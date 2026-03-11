@@ -300,17 +300,18 @@ tr:hover td{background:#fafbfd;}
           <tr>
             <th style="text-align:left;">โรงงาน</th>
             <th>ลิตร</th>
-            <th>ราคาปัจจุบัน</th>
-            <th>กำไรปัจจุบัน</th>
-            <th>ราคาแนะนำ (เป้า <span id="th-min">2,000</span>–<span id="th-max">3,000</span> บาท)</th>
-            <th>สถานะ</th>
+            <th>ราคาตาราง<br><span style="font-weight:400;font-size:10px;">(ปัจจุบัน)</span></th>
+            <th>กำไรเดิม<br><span style="font-weight:400;font-size:10px;">@น้ำมัน 27฿</span></th>
+            <th>กำไรถ้าใช้ราคาเดิม<br><span id="cur-oil-th" style="font-weight:400;font-size:10px;">@น้ำมัน –฿</span></th>
+            <th>⭐ ราคาแนะนำ<br><span id="rec-oil-th" style="font-weight:400;font-size:10px;">@น้ำมัน –฿ กำไรเท่าเดิม</span></th>
+            <th>สถานะ<br><span style="font-weight:400;font-size:10px;">เทียบเป้า <span id="th-min">2,000</span>–<span id="th-max">3,000</span>฿</span></th>
           </tr>
         </thead>
         <tbody id="targetTableBody"></tbody>
       </table>
     </div>
     <div style="margin-top:12px;padding:10px 12px;background:#f5f7fb;border-radius:8px;font-size:11px;color:var(--muted);">
-      💡 <strong>สูตรคำนวณ:</strong> ราคาใหม่ = ค่าเที่ยวคนขับ + (จำนวนลิตร × ราคาน้ำมัน) + กำไรเป้าหมาย
+      💡 <strong>สูตร:</strong> ราคาแนะนำ = ราคาตาราง + (น้ำมันปัจจุบัน – 27) × จำนวนลิตร &nbsp;|&nbsp; กำไรแนะนำ = กำไรเดิม @27฿ เสมอ
     </div>
   </div>
 </div>
@@ -614,39 +615,51 @@ let currentOilPrice = 27;
 function buildTargetTable(oilPrice) {
   const minP = parseFloat(document.getElementById('target-min').value) || 2000;
   const maxP = parseFloat(document.getElementById('target-max').value) || 3000;
+
+  // อัพเดต label
   document.getElementById('target-oil-label').textContent = oilPrice;
   document.getElementById('th-min').textContent = minP.toLocaleString('th-TH');
   document.getElementById('th-max').textContent = maxP.toLocaleString('th-TH');
+  document.getElementById('cur-oil-th').textContent = `@น้ำมัน ${oilPrice}฿`;
+  document.getElementById('rec-oil-th').textContent = `@น้ำมัน ${oilPrice}฿ กำไรเท่าเดิม`;
 
   const tbody = document.getElementById('targetTableBody');
   tbody.innerHTML = PRICE_DATA.map(r => {
     const oilCost    = r.L * oilPrice;
-    const curProfit  = r.price - oilCost - r.driver;
-    // ราคาเพื่อกำไรตามเป้า
-    const priceForMin = r.driver + oilCost + minP;
-    const priceForMax = r.driver + oilCost + maxP;
-    // สถานะ
+    const origProfit = r.price - r.driver - r.L * 27;   // กำไรเดิมจากตาราง @27฿
+    const curProfit  = r.price - oilCost - r.driver;    // กำไรถ้าใช้ราคาตารางเดิม ณ น้ำมันปัจจุบัน
+    // ราคาแนะนำ = รักษากำไรเดิม = ราคาตาราง + ส่วนต่างน้ำมัน × ลิตร
+    const recPrice   = r.price + r.L * (oilPrice - 27);
+
+    // สถานะเทียบกับเป้าที่กำหนด (ใช้ origProfit เป็น target ของแต่ละโรงงาน)
     let statusHtml;
-    if (curProfit < 0) {
-      statusHtml = `<span class="status-neg">ขาดทุน</span>`;
-    } else if (curProfit < minP) {
-      statusHtml = `<span class="status-low">กำไรต่ำกว่าเป้า</span>`;
-    } else if (curProfit <= maxP) {
+    if (origProfit < 0) {
+      statusHtml = `<span class="status-neg">ราคาตารางต่ำเกิน</span>`;
+    } else if (origProfit < minP) {
+      statusHtml = `<span class="status-low">กำไรเดิมต่ำกว่าเป้า</span>`;
+    } else if (origProfit <= maxP) {
       statusHtml = `<span class="status-ok">✓ อยู่ในเป้า</span>`;
     } else {
-      statusHtml = `<span class="status-high">กำไรสูงกว่าเป้า</span>`;
+      statusHtml = `<span class="status-high">กำไรเดิมสูงกว่าเป้า</span>`;
     }
-    const pColor = curProfit < 0 ? '#e74c3c' : curProfit < minP ? '#e67e22' : '#27ae60';
+
+    const origPColor = origProfit < 0 ? '#e74c3c' : origProfit < minP ? '#e67e22' : '#27ae60';
+    const curPColor  = curProfit >= 0 ? '#27ae60' : '#e74c3c';
+    // ถ้าน้ำมันแพงกว่า 25 ราคาแนะนำจะสูงกว่าตาราง → แสดง diff
+    const priceDiff  = recPrice - r.price;
+    const diffLabel  = priceDiff === 0 ? '' :
+      `<span style="font-size:10px;color:${priceDiff>0?'#e67e22':'#27ae60'};">
+        (${priceDiff>0?'+':''}${fmt(priceDiff)})
+      </span>`;
+
     return `<tr>
-      <td>${r.name}</td>
-      <td>${r.L}</td>
+      <td style="font-weight:600;color:var(--primary);">${r.name}</td>
+      <td style="text-align:center;">${r.L}</td>
       <td style="color:#2e5d9f;font-weight:700;">${fmt(r.price)}</td>
-      <td style="color:${pColor};font-weight:700;">${fmt(curProfit)}</td>
-      <td>
-        <span class="price-range">
-          ${fmt(priceForMin)}<span class="sep">–</span>${fmt(priceForMax)}
-        </span>
-        <span style="font-size:11px;color:var(--muted);"> บาท</span>
+      <td style="color:${origPColor};font-weight:700;">${fmt(origProfit)}</td>
+      <td style="color:${curPColor};font-weight:700;">${fmt(curProfit)}</td>
+      <td style="font-weight:800;font-size:14px;color:#d48900;">
+        ${fmt(recPrice)} ${diffLabel}
       </td>
       <td>${statusHtml}</td>
     </tr>`;
