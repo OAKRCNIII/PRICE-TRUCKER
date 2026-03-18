@@ -16,7 +16,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Sarabun','TH Sarabun New',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;}
-
 /* ── PASSWORD SCREEN ── */
 #pwd-screen{
   position:fixed;inset:0;background:linear-gradient(135deg,#1e3a5f 0%,#2e5d9f 60%,#3a7bd5 100%);
@@ -43,19 +42,19 @@ body{font-family:'Sarabun','TH Sarabun New',Arial,sans-serif;background:var(--bg
 }
 .pwd-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,58,95,.4);}
 .pwd-err{margin-top:12px;color:#e74c3c;font-size:13px;font-weight:600;min-height:18px;}
-
 /* ── HEADER ── */
 .header{background:linear-gradient(135deg,#1e3a5f 0%,#2e5d9f 60%,#3a7bd5 100%);padding:22px 36px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 20px rgba(30,58,95,.3);}
 .header-icon{width:52px;height:52px;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid rgba(255,255,255,.25);}
 .header h1{color:#fff;font-size:22px;font-weight:700;}
 .header .sub{color:rgba(255,255,255,.75);font-size:13px;margin-top:2px;}
-.badge-rate{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;text-align:center;line-height:1.4;}
+.header-right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.badge-rate{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;text-align:center;line-height:1.4;}
 .badge-rate strong{display:block;font-size:16px;font-weight:700;}
-
+.badge-update{background:rgba(240,165,0,.25);border:1px solid rgba(240,165,0,.6);color:#ffe08a;padding:6px 14px;border-radius:20px;font-size:12px;text-align:center;line-height:1.4;}
+.badge-update strong{font-weight:700;font-size:13px;}
 /* ── LAYOUT ── */
 .container{max-width:1100px;margin:0 auto;padding:28px 24px 60px;}
 .main-grid{display:grid;grid-template-columns:380px 1fr;gap:24px;align-items:start;}
-
 /* ── INPUT CARD ── */
 .input-card{background:var(--card);border-radius:18px;padding:28px;box-shadow:var(--shadow-lg);border-top:5px solid var(--primary-l);position:sticky;top:24px;}
 .input-card h2{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
@@ -82,11 +81,9 @@ input[type=range]{width:100%;accent-color:var(--primary-l);height:6px;margin-top
 .calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,58,95,.4);}
 .calc-btn:active{transform:translateY(0);}
 .divider{border:none;border-top:1px solid var(--border);margin:20px 0;}
-
 /* ── RESULT PANEL ── */
 .result-section-title{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;margin-top:24px;}
 .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-
 /* ── RESULT BOX ── */
 .res-box{background:var(--card);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s;}
 .res-box:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
@@ -102,13 +99,11 @@ input[type=range]{width:100%;accent-color:var(--primary-l);height:6px;margin-top
 .res-box.red{border-left:4px solid #e74c3c;} .res-box.red .res-value{color:#e74c3c;}
 .res-box.gold{border-left:4px solid #f0a500;background:linear-gradient(135deg,#fffdf0,#fff8e0);}
 .res-box.gold .res-value{color:#d48900;}
-
 /* ── PROFIT METER ── */
 .profit-meter{margin-top:16px;}
 .meter-bar{height:14px;border-radius:7px;background:#eee;overflow:hidden;margin-top:6px;}
 .meter-fill{height:100%;border-radius:7px;transition:width .8s cubic-bezier(.25,.46,.45,.94);}
 .meter-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;}
-
 /* ── REFERENCE TABLE ── */
 .ref-table-card{background:var(--card);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-top:24px;}
 .ref-table-card h3{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;}
@@ -121,16 +116,13 @@ tr:hover td{background:#fafbfd;}
 .highlight-row td{background:#fffbea !important;font-weight:700;}
 .highlight-row td:first-child{color:var(--accent);}
 .tag{display:inline-block;padding:1px 7px;border-radius:8px;font-size:10px;font-weight:600;background:#eef2fb;color:#2e5d9f;}
-
 /* ── CHART ── */
 .chart-wrap{background:var(--card);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-top:14px;}
 .chart-wrap h3{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:14px;}
-
 /* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:48px 20px;color:var(--muted);}
 .empty-state .big-icon{font-size:64px;margin-bottom:12px;opacity:.4;}
 .empty-state p{font-size:14px;}
-
 /* ── TARGET PROFIT SECTION ── */
 .target-section{margin-top:32px;}
 .target-header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
@@ -156,12 +148,10 @@ tr:hover td{background:#fafbfd;}
 .status-neg {background:#fdecea;color:#c0392b;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;}
 .price-range{font-weight:700;color:#1e3a5f;}
 .price-range .sep{color:var(--muted);font-weight:400;margin:0 3px;}
-
 @media(max-width:800px){.main-grid{grid-template-columns:1fr;} .input-card{position:static;} .result-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
 <!-- ══════════════════════════════════════════
      PASSWORD SCREEN
 ═══════════════════════════════════════════ -->
@@ -176,31 +166,31 @@ tr:hover td{background:#fafbfd;}
     <div class="pwd-err" id="pwd-err"></div>
   </div>
 </div>
-
 <!-- ══════════════════════════════════════════
      MAIN CONTENT
 ═══════════════════════════════════════════ -->
 <div id="main-content" style="display:none;">
-
 <div class="header">
   <div class="header-icon">🚛</div>
   <div>
     <h1>โปรแกรมคำนวณค่าขนส่ง</h1>
     <div class="sub">บริษัท ธีรา อาร์ที โลจิสติกส์ &nbsp;|&nbsp; เปรียบเทียบกับอัตราจากตาราง PRICE</div>
   </div>
-  <div class="badge-rate">
-    <span>อัตราสิ้นเปลืองน้ำมัน</span>
-    <strong>2.7 กม./ลิตร</strong>
+  <div class="header-right">
+    <div class="badge-rate">
+      <span>อัตราสิ้นเปลืองน้ำมัน</span>
+      <strong>2.7 กม./ลิตร</strong>
+    </div>
+    <div class="badge-update">
+      📅 อัพเดตราคา: <strong>17 มีนาคม 2569</strong>
+    </div>
   </div>
 </div>
-
 <div class="container">
 <div class="main-grid">
-
   <!-- INPUT CARD -->
   <div class="input-card">
     <h2>⚙️ กรอกข้อมูล</h2>
-
     <div class="field">
       <label>ระยะทาง (กิโลเมตร)</label>
       <div class="field-row">
@@ -212,7 +202,6 @@ tr:hover td{background:#fafbfd;}
         <div class="slider-labels"><span>50 กม.</span><span>400 กม.</span><span>800 กม.</span></div>
       </div>
     </div>
-
     <div class="field">
       <label>ราคาน้ำมัน (บาท/ลิตร)</label>
       <div class="field-row">
@@ -224,15 +213,12 @@ tr:hover td{background:#fafbfd;}
         <div class="slider-labels"><span>20 ฿</span><span>35 ฿</span><span>50 ฿</span></div>
       </div>
     </div>
-
     <hr class="divider">
     <button class="calc-btn" onclick="calculate()">🧮 คำนวณ</button>
-
     <div style="margin-top:16px;padding:12px;background:#f5f7fb;border-radius:10px;font-size:12px;color:var(--muted);">
-      💡 <strong>หมายเหตุ:</strong> ราคาและค่าเที่ยวคำนวณจาก interpolation เปรียบเทียบกับตาราง PRICE (อ้างอิง ณ 09/3/2568) — กำไรคำนวณที่ราคาน้ำมันที่กรอก
+      💡 <strong>หมายเหตุ:</strong> ราคาและค่าเที่ยวคำนวณจาก interpolation เปรียบเทียบกับตาราง PRICE (อ้างอิง ณ 17/3/2569) — กำไรคำนวณที่ราคาน้ำมันที่กรอก
     </div>
   </div>
-
   <!-- RIGHT PANEL -->
   <div class="result-panel">
     <div id="result-content">
@@ -242,9 +228,7 @@ tr:hover td{background:#fafbfd;}
       </div>
     </div>
   </div>
-
 </div>
-
 <!-- REFERENCE TABLE -->
 <div style="margin-top:32px;">
   <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;">
@@ -267,7 +251,6 @@ tr:hover td{background:#fafbfd;}
       <tbody id="refTableBody"></tbody>
     </table>
   </div>
-
   <div class="chart-wrap">
     <h3>📈 กราฟความสัมพันธ์ ระยะทาง vs ราคาค่าขนส่ง</h3>
     <div style="height:260px;position:relative;">
@@ -275,7 +258,6 @@ tr:hover td{background:#fafbfd;}
     </div>
   </div>
 </div>
-
 <!-- TARGET PROFIT SECTION -->
 <div class="target-section" id="target-section" style="display:none;">
   <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;">
@@ -315,10 +297,8 @@ tr:hover td{background:#fafbfd;}
     </div>
   </div>
 </div>
-
 </div><!-- /container -->
 </div><!-- /main-content -->
-
 <script>
 // ──────────────────────────────────────────────────────
 //  PASSWORD
@@ -335,29 +315,28 @@ function checkPwd() {
     document.getElementById('pwd-input').focus();
   }
 }
-
 // ──────────────────────────────────────────────────────
-//  PRICE DATA  (อัพเดต 09/03/2568)
+//  PRICE DATA  (อัพเดต 17/03/2569)
 //  เฉพาะโรงงานที่มีราคา > 0  เรียงตามลิตร
 // ──────────────────────────────────────────────────────
 const PRICE_DATA = [
-  { name:'เอส.เอช.แอล (รัตภูมิ)',       price:4600,  driver:400,  L:60  },
-  { name:'กนกทอง',                        price:4900,  driver:500,  L:80  },
+  { name:'เอส.เอช.แอล (รัตภูมิ)',       price:4900,  driver:400,  L:60  },
+  { name:'กนกทอง (เทพา)',                price:5200,  driver:500,  L:80  },
   { name:'ปัตตานี',                        price:6900,  driver:650,  L:100 },
   { name:'ยะลาSP',                         price:6500,  driver:650,  L:120 },
-  { name:'J.M.1988',                       price:6800,  driver:700,  L:130 },
-  { name:'ศรีเจริญทรัพย์',                price:7500,  driver:720,  L:140 },
+  { name:'พัทลุงชัพพลาย',                price:6600,  driver:650,  L:120 },
+  { name:'J.M. (ชะอวด)',                   price:7200,  driver:700,  L:130 },
+  { name:'ศรีเจริญทรัพย์',                price:8000,  driver:720,  L:140 },
   { name:'พี.อาร์. วู้ด (ยะลา)',          price:6600,  driver:650,  L:145 },
-  { name:'บิ๊กเกอร์ วู้ด',               price:7500,  driver:770,  L:150 },
-  { name:'นาเมืองเพชร',                   price:7300,  driver:820,  L:160 },
-  { name:'สวนจันทร์',                     price:7500,  driver:820,  L:160 },
-  { name:'ที.เอส.โอ.',                    price:7300,  driver:850,  L:180 },
-  { name:'นาวาพารา',                      price:8400,  driver:900,  L:190 },
-  { name:'ส.จันดี ฉวาง / ไทยนคร',        price:8500,  driver:900,  L:190 },
-  { name:'ทุ่งหลวง / บ้านส้อง',          price:9000,  driver:1000, L:210 },
-  { name:'วรเกียรติ์ (โรงเก่า)',          price:9000,  driver:1000, L:210 },
+  { name:'บิ๊กเกอร์วู้ด',               price:8000,  driver:770,  L:150 },
+  { name:'นาเมืองเพชร',                   price:8000,  driver:820,  L:160 },
+  { name:'สวนจันทร์ (ตรัง)',              price:8000,  driver:820,  L:160 },
+  { name:'ที.เอส.โอ. (ตรัง)',             price:8000,  driver:850,  L:180 },
+  { name:'นาวาพารา',                      price:9000,  driver:900,  L:190 },
+  { name:'ส.จันดีฉวาง / ไทยนคร',         price:9100,  driver:900,  L:190 },
+  { name:'ทุ่งหลวง / บ้านส้อง',          price:9800,  driver:1000, L:210 },
+  { name:'วรเกียรติ์ (โรงเก่า)',          price:9800,  driver:1000, L:210 },
 ];
-
 // Deduplicate by L for interpolation (average values at same L, combine names)
 function buildInterpData(src) {
   const map = {};
@@ -378,17 +357,14 @@ function buildInterpData(src) {
     .sort((a,b) => a.L - b.L);
 }
 const INTERP = buildInterpData(PRICE_DATA);
-
 const KM_PER_L = 2.7;
 const fmt  = v => Math.round(v).toLocaleString('th-TH');
 const fmtD = v => v.toLocaleString('th-TH',{minimumFractionDigits:1,maximumFractionDigits:1});
-
 // ──────────────────────────────────────────────────────
 //  SLIDER SYNC
 // ──────────────────────────────────────────────────────
 function syncSlider(id, val){ document.getElementById('sl-'+id).value = val; }
 function syncInput(id, val) { document.getElementById('inp-'+id).value = val; }
-
 // ──────────────────────────────────────────────────────
 //  INTERPOLATE / EXTRAPOLATE
 // ──────────────────────────────────────────────────────
@@ -410,11 +386,9 @@ function interpolate(liters, field) {
   }
   return d[n-1][field];
 }
-
 function findNearest(liters) {
   return INTERP.slice().sort((a,b) => Math.abs(a.L-liters) - Math.abs(b.L-liters)).slice(0,3);
 }
-
 // ──────────────────────────────────────────────────────
 //  CALCULATE
 // ──────────────────────────────────────────────────────
@@ -424,31 +398,25 @@ function calculate() {
   if (!dist || !oilPrice || dist <= 0 || oilPrice <= 0) {
     alert('กรุณากรอกข้อมูลให้ครบถ้วน'); return;
   }
-
   const minP      = parseFloat(document.getElementById('target-min').value) || 2000;
   const maxP      = parseFloat(document.getElementById('target-max').value) || 3000;
-  const midP      = (minP + maxP) / 2;  // กำไรเป้ากลาง เช่น 2500
-
+  const midP      = (minP + maxP) / 2;
   const liters     = dist / KM_PER_L;
   const oilCost    = liters * oilPrice;
   const sugDriver  = interpolate(liters, 'driver');
-  const tablePrice = interpolate(liters, 'price');          // ราคาจากตาราง (อ้างอิง)
-  const recPrice   = sugDriver + oilCost + midP;            // ราคาแนะนำ (กำไร = midP เสมอ)
-  const profit     = recPrice - oilCost - sugDriver;        // = midP
+  const tablePrice = interpolate(liters, 'price');
+  const recPrice   = sugDriver + oilCost + midP;
+  const profit     = recPrice - oilCost - sugDriver;
   const margin     = recPrice > 0 ? (profit / recPrice * 100) : 0;
   const nearest    = findNearest(liters);
-
-  // สถานะราคาตาราง vs ราคาน้ำมันปัจจุบัน
   const tableProfit = tablePrice - oilCost - sugDriver;
   const tablePColor = tableProfit >= 0 ? '#27ae60' : '#e74c3c';
   const tablePLabel = tableProfit >= 0
     ? `กำไร <strong style="color:#27ae60;">+${fmt(tableProfit)}</strong> บาท`
     : `<strong style="color:#e74c3c;">ขาดทุน ${fmt(tableProfit)} บาท</strong> ถ้าใช้ราคาตาราง`;
-
   const barPct = Math.min(Math.max((profit / recPrice) * 100, 0), 100).toFixed(1);
-
   const nearestHtml = nearest.map(r => {
-    const adjRec    = r.driver + r.L * oilPrice + midP;  // ราคาแนะนำ
+    const adjRec    = r.driver + r.L * oilPrice + midP;
     const tblProfit = r.price - r.L * oilPrice - r.driver;
     const tpColor   = tblProfit >= 0 ? '#27ae60' : '#e74c3c';
     return `
@@ -465,7 +433,6 @@ function calculate() {
       </div>
     </div>`;
   }).join('');
-
   document.getElementById('result-content').innerHTML = `
     <div class="result-section-title">ผลการคำนวณ – ระยะ ${fmt(dist)} กม. | น้ำมัน ${oilPrice} ฿/ลิตร</div>
     <div class="result-grid">
@@ -488,7 +455,7 @@ function calculate() {
         <div class="res-icon">👤</div>
       </div>
       <div class="res-box" style="border-left:4px solid #95a5a6;background:#fafbfd;">
-        <div class="res-label" style="color:#95a5a6;">ราคาตาราง PRICE (09/3/2568)</div>
+        <div class="res-label" style="color:#95a5a6;">ราคาตาราง PRICE (17/3/2569)</div>
         <div class="res-value" style="color:#7f8c8d;">${fmt(tablePrice)}</div>
         <div class="res-sub">${tablePLabel}</div>
         <div class="res-icon">📋</div>
@@ -516,14 +483,11 @@ function calculate() {
         <div class="res-icon">📈</div>
       </div>
     </div>
-
     <div class="result-section-title" style="margin-top:22px;">เส้นทางใกล้เคียง – ราคาตารางเดิม vs ราคาแนะนำ (น้ำมัน ${oilPrice} ฿ กำไร ${fmt(midP)} บาท)</div>
     <div style="background:var(--card);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);">
       ${nearestHtml}
     </div>
   `;
-
-  // อัพเดตตารางและส่วนปรับราคา
   currentOilPrice = oilPrice;
   buildRefTable(liters, oilPrice);
   buildTargetTable(oilPrice);
@@ -532,12 +496,11 @@ function calculate() {
   document.getElementById('oil-col-hdr').textContent = `ค่าน้ำมัน (@${oilPrice}฿)`;
   document.getElementById('profit-col-hdr').textContent = `กำไร @${oilPrice}฿`;
 }
-
 // ──────────────────────────────────────────────────────
-//  REFERENCE TABLE  (กำไร = ราคา – น้ำมันจริง – ค่าเที่ยว)
+//  REFERENCE TABLE
 // ──────────────────────────────────────────────────────
 function buildRefTable(highlightL, oilPrice) {
-  const oil = oilPrice || 25;
+  const oil = oilPrice || 27;
   const tbody = document.getElementById('refTableBody');
   tbody.innerHTML = PRICE_DATA.map(r => {
     const km      = Math.round(r.L * KM_PER_L);
@@ -556,10 +519,9 @@ function buildRefTable(highlightL, oilPrice) {
     </tr>`;
   }).join('');
 }
-buildRefTable(undefined, 25);
-
+buildRefTable(undefined, 27);
 // ──────────────────────────────────────────────────────
-//  REFERENCE CHART  (profit line @25฿ as baseline)
+//  REFERENCE CHART
 // ──────────────────────────────────────────────────────
 const kmData = INTERP.map(r => Math.round(r.L * KM_PER_L));
 new Chart(document.getElementById('refChart'), {
@@ -582,8 +544,8 @@ new Chart(document.getElementById('refChart'), {
         borderDash: [5,3], tension: 0.3,
       },
       {
-        label: 'กำไร (@น้ำมัน 25฿ อ้างอิง)',
-        data: INTERP.map(r => r.price - r.driver - r.L * 25),
+        label: 'กำไร (@น้ำมัน 27฿ อ้างอิง)',
+        data: INTERP.map(r => r.price - r.driver - r.L * 27),
         borderColor: '#27ae60', backgroundColor: 'transparent',
         borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#27ae60',
         borderDash: [3,3], tension: 0.3,
@@ -605,33 +567,24 @@ new Chart(document.getElementById('refChart'), {
     }
   }
 });
-
 // ──────────────────────────────────────────────────────
 //  TARGET PROFIT TABLE
-//  ราคาใหม่ = driver + L×oilPrice + targetProfit
 // ──────────────────────────────────────────────────────
 let currentOilPrice = 27;
-
 function buildTargetTable(oilPrice) {
   const minP = parseFloat(document.getElementById('target-min').value) || 2000;
   const maxP = parseFloat(document.getElementById('target-max').value) || 3000;
-
-  // อัพเดต label
   document.getElementById('target-oil-label').textContent = oilPrice;
   document.getElementById('th-min').textContent = minP.toLocaleString('th-TH');
   document.getElementById('th-max').textContent = maxP.toLocaleString('th-TH');
   document.getElementById('cur-oil-th').textContent = `@น้ำมัน ${oilPrice}฿`;
   document.getElementById('rec-oil-th').textContent = `@น้ำมัน ${oilPrice}฿ กำไรเท่าเดิม`;
-
   const tbody = document.getElementById('targetTableBody');
   tbody.innerHTML = PRICE_DATA.map(r => {
     const oilCost    = r.L * oilPrice;
-    const origProfit = r.price - r.driver - r.L * 27;   // กำไรเดิมจากตาราง @27฿
-    const curProfit  = r.price - oilCost - r.driver;    // กำไรถ้าใช้ราคาตารางเดิม ณ น้ำมันปัจจุบัน
-    // ราคาแนะนำ = รักษากำไรเดิม = ราคาตาราง + ส่วนต่างน้ำมัน × ลิตร
+    const origProfit = r.price - r.driver - r.L * 27;
+    const curProfit  = r.price - oilCost - r.driver;
     const recPrice   = r.price + r.L * (oilPrice - 27);
-
-    // สถานะเทียบกับเป้าที่กำหนด (ใช้ origProfit เป็น target ของแต่ละโรงงาน)
     let statusHtml;
     if (origProfit < 0) {
       statusHtml = `<span class="status-neg">ราคาตารางต่ำเกิน</span>`;
@@ -642,16 +595,13 @@ function buildTargetTable(oilPrice) {
     } else {
       statusHtml = `<span class="status-high">กำไรเดิมสูงกว่าเป้า</span>`;
     }
-
     const origPColor = origProfit < 0 ? '#e74c3c' : origProfit < minP ? '#e67e22' : '#27ae60';
     const curPColor  = curProfit >= 0 ? '#27ae60' : '#e74c3c';
-    // ถ้าน้ำมันแพงกว่า 25 ราคาแนะนำจะสูงกว่าตาราง → แสดง diff
     const priceDiff  = recPrice - r.price;
     const diffLabel  = priceDiff === 0 ? '' :
       `<span style="font-size:10px;color:${priceDiff>0?'#e67e22':'#27ae60'};">
         (${priceDiff>0?'+':''}${fmt(priceDiff)})
       </span>`;
-
     return `<tr>
       <td style="font-weight:600;color:var(--primary);">${r.name}</td>
       <td style="text-align:center;">${r.L}</td>
@@ -664,16 +614,13 @@ function buildTargetTable(oilPrice) {
       <td>${statusHtml}</td>
     </tr>`;
   }).join('');
-
   document.getElementById('target-section').style.display = 'block';
 }
-
 // ── INIT defaults ──
 document.getElementById('inp-dist').value = 400;
 document.getElementById('inp-oil').value  = 27;
 document.getElementById('sl-dist').value  = 400;
 document.getElementById('sl-oil').value   = 27;
-// แสดงตารางปรับราคาตั้งแต่เริ่มต้น (น้ำมัน 27 บาท default)
 buildTargetTable(27);
 </script>
 </body>
